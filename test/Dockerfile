@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM c33s/debian:latest
 
 MAINTAINER c33s
 
