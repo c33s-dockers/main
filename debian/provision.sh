@@ -15,6 +15,8 @@ apt-get update && apt-get install --quiet --yes --force-yes --no-install-recomme
     unzip \
     wget \
     zip \
+    lftp \
+    openssh-client \
     && apt-get clean -qq \
     && apt-get autoremove -qq \
     && ( -rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* >/dev/null 2>&1 || true )
