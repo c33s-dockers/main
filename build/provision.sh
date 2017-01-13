@@ -25,8 +25,7 @@ npm config --global set prefix '/usr/local/.npm'
 ####################################################################################################
 # CI Stuff
 ####################################################################################################
-curl -sL https://deb.nodesource.com/setup_4.x | bash - \
-    && apt-get update && apt-get install --quiet --yes --force-yes --no-install-recommends \
+apt-get update && apt-get install --quiet --yes --force-yes --no-install-recommends \
         nodejs \
         ruby \
         ruby-dev \
@@ -36,7 +35,7 @@ curl -sL https://deb.nodesource.com/setup_4.x | bash - \
         debhelper \
         dh-make \
         rpm \
-    && gem install --no-ri --no-rdoc fpm
+    && gem install --no-ri --no-rdoc fpm \
     && apt-get clean -qq \
     && apt-get autoremove -qq \
     && ( -rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* >/dev/null 2>&1 || true )
