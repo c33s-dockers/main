@@ -15,6 +15,7 @@ apt-get update && apt-get install --quiet --yes --no-install-recommends \
     && apt-get clean -qq \
     && apt-get autoremove -qq \
     && ( -rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* >/dev/null 2>&1 || true )
+cd root
 pwd
 ls -lsa
 ########################################################################################################################
