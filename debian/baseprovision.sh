@@ -1,4 +1,5 @@
 #!/bin/bash
+
 ########################################################################################################################
 # Base Setup
 ########################################################################################################################
@@ -6,23 +7,25 @@ apt-get update && apt-get install --quiet --yes --no-install-recommends \
     apt-transport-https \
     apt-utils \
     ca-certificates \
-    curl \
+    bash \
+#    curl \
     git \
     gpgv2 \
     grep \
-    lftp \
+#    lftp \
     lsb-release \
-    lynx \
-    openssh-client \
-    rsync \
-    software-properties-common \
-    unzip \
-    wget \
-    zip \
+#    lynx \
+#    openssh-client \
+#    rsync \
+#    software-properties-common \
+#    unzip \
+#    wget \
+#    zip \
     && apt-get clean -qq \
     && apt-get autoremove -qq \
     && ( -rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* >/dev/null 2>&1 || true )
-
+pwd
+ls -lsa
 ########################################################################################################################
 # ssh
 ########################################################################################################################
