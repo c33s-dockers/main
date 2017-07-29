@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure(2) do |config|
-  config.vm.box = "c33s/debian-64-jessie"
+  config.vm.box = "c33s/debian-64-stretch"
   
   config.vm.usable_port_range = (2222..2250)
   config.vm.hostname = "vagrant.local"
