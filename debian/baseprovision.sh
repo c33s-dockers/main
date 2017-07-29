@@ -8,19 +8,10 @@ apt-get update && apt-get install --quiet --yes --no-install-recommends \
     apt-utils \
     ca-certificates \
     bash \
-#    curl \
     git \
     gpgv2 \
     grep \
-#    lftp \
     lsb-release \
-#    lynx \
-#    openssh-client \
-#    rsync \
-#    software-properties-common \
-#    unzip \
-#    wget \
-#    zip \
     && apt-get clean -qq \
     && apt-get autoremove -qq \
     && ( -rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* >/dev/null 2>&1 || true )
@@ -47,3 +38,13 @@ ls -lsa
 #    User git
 #    Port 22
 #EOF
+
+#    curl \    
+#    lftp \
+#    lynx \
+#    openssh-client \
+#    rsync \
+#    software-properties-common \
+#    unzip \
+#    wget \
+#    zip \
