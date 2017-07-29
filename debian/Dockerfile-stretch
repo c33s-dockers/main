@@ -3,6 +3,6 @@ FROM debian:stretch-backports
 MAINTAINER c33s
 
 ARG DEBIAN_FRONTEND=noninteractive
-COPY ../baseprovision.sh /root/baseprovision.sh
-COPY provision.sh /root/provision.sh
+COPY baseprovision.sh /root/baseprovision.sh
+COPY 9-strech/provision.sh /root/provision.sh
 RUN chmod +x /root/baseprovision.sh && /root/baseprovision.sh && chmod +x /root/provision.sh && /root/provision.sh
