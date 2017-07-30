@@ -4,4 +4,4 @@ MAINTAINER c33s
 
 ARG DEBIAN_FRONTEND=noninteractive
 COPY provision-base.sh /root/provision-base.sh
-RUN chmod +x && /root/provision-base.sh
+RUN chmod +x /root/provision-base.sh && /root/provision-base.sh

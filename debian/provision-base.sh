@@ -39,3 +39,5 @@ apt-get update && apt-get install --quiet --yes --no-install-recommends \
 #    User git
 #    Port 22
 #EOF
+#rm /etc/ssh/ssh_host_rsa_key
+#rm /etc/ssh/ssh_host_dsa_key
