@@ -14,6 +14,7 @@ apt-get install --quiet --yes --no-install-recommends \
     git \
     gnupg \
     grep \
+    lftp \
     lsb-release \
     lynx \
     openssh-client \
