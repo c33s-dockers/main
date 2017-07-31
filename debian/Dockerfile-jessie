@@ -1,8 +1,8 @@
-FROM debian:stretch-backports
+FROM debian:jessie-backports
 
 MAINTAINER c33s
 
-ENV DOCKER_DEBIAN_CODENAME stretch
+ENV DOCKER_DEBIAN_CODENAME jessie
 ARG DEBIAN_FRONTEND=noninteractive
 
 COPY bin/provision-base.sh /root/provision-base.sh
