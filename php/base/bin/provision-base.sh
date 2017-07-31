@@ -60,8 +60,8 @@ apt-get update && apt-get install --quiet --yes --no-install-recommends \
         php$DOCKER_PHP_VERSION-zip
 apt-get clean -qq
 apt-get autoremove -qq && ( -rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* >/dev/null 2>&1 || true ) \
-    && ( echo 'date.timezone="Europe/Vienna"' >> /etc/php/$DOCKER_PHP_VERSION/cli/conf.d/timezone.ini || true ) \
-    && rm -rf /etc/php/$DOCKER_PHP_VERSION/cli/conf.d/20-xdebug.ini
+    && ( echo 'date.timezone="Europe/Vienna"' >> /etc/php/$DOCKER_PHP_VERSION/cli/conf.d/timezone.ini || true )
+#    && rm -rf /etc/php/$DOCKER_PHP_VERSION/cli/conf.d/20-xdebug.ini
 
 
 ########################################################################################################################
