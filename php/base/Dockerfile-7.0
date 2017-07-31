@@ -1,0 +1,21 @@
+FROM c33s/debian:latest
+
+MAINTAINER c33s
+
+ENV DOCKER_PHP_VERSION 7.0
+ARG DEBIAN_FRONTEND=noninteractive
+
+COPY bin/provision-base.sh /root/provision-base.sh
+RUN chmod +x /root/provision-base.sh && /root/provision-base.sh
+
+COPY bin/provision-${DOCKER_PHP_VERSION}.sh /root/provision-${DOCKER_PHP_VERSION}.sh
+RUN chmod +x /root/provision-${DOCKER_PHP_VERSION}.sh && /root/provision-${DOCKER_PHP_VERSION}.sh && php -v
+
+CMD ["php", "-a"]
+
+
+
+
+
+
+
