@@ -5,6 +5,9 @@
 echo "running provision for"
 figlet PHP ${DOCKER_PHP_VERSION}
 
+
+# does not use base-provision.sh!
+
 ########################################################################################################################
 # DotDeb Repo
 ########################################################################################################################
@@ -65,6 +68,7 @@ apt-get clean -qq
 apt-get autoremove -qq && ( -rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* >/dev/null 2>&1 || true ) \
     && ( echo 'date.timezone="Europe/Vienna"' >> /etc/php5/cli/conf.d/timezone.ini || true )
 #    && rm -rf /etc/php/$DOCKER_PHP_VERSION_MAJOR/cli/conf.d/20-xdebug.ini
+
 
 
 ########################################################################################################################
