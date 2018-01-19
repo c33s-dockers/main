@@ -34,7 +34,7 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.lis
 ########################################################################################################################
 # Node Repo
 ########################################################################################################################
-curl -sL https://deb.nodesource.com/setup_${DOCKER_NODE_VERSION} | bash -
+curl -sL https://deb.nodesource.com/setup_8.x | bash -
 
 ########################################################################################################################
 apt-get update && apt-get install --quiet --yes --no-install-recommends \
@@ -82,7 +82,7 @@ apt-get autoremove -qq && ( -rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* >/dev
 # Php Phar Utils
 ########################################################################################################################
 
-wget --no-verbose https://getcomposer.org/download/1.4.2/composer.phar --output-document=/usr/local/bin/composer \
+wget --no-verbose https://getcomposer.org/download/1.6.2/composer.phar --output-document=/usr/local/bin/composer \
     && chmod +x /usr/local/bin/composer \
     && composer self-update \
     && composer --ansi global require hirak/prestissimo:^0.3 \
@@ -93,6 +93,6 @@ wget --no-verbose https://symfony.com/installer --output-document=/usr/local/bin
     && chmod a+x /usr/local/bin/symfony \
     && symfony --version
 
-wget --no-verbose https://github.com/consolidation/Robo/releases/download/1.1.2/robo.phar --output-document=/usr/local/bin/robo \
+wget --no-verbose https://github.com/consolidation/Robo/releases/download/1.2.1/robo.phar --output-document=/usr/local/bin/robo \
     && chmod a+x /usr/local/bin/robo \
     && robo --version
