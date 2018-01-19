@@ -25,7 +25,21 @@ EOF
         && rm dotdeb.gpg
 fi
 
+########################################################################################################################
+# Yarn Repo
+########################################################################################################################
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+
+########################################################################################################################
+# Node Repo
+########################################################################################################################
+curl -sL https://deb.nodesource.com/setup_${DOCKER_NODE_VERSION} | bash -
+
+########################################################################################################################
 apt-get update && apt-get install --quiet --yes --no-install-recommends \
+        yarn \
+        nodejs \
         php$DOCKER_PHP_VERSION-cli \
         php$DOCKER_PHP_VERSION-apcu \
         php$DOCKER_PHP_VERSION-apcu-bc \

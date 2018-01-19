@@ -3,6 +3,7 @@ FROM c33s/debian:latest
 MAINTAINER c33s
 
 ENV DOCKER_PHP_VERSION 7.1
+ENV DOCKER_NODE_VERSION 8.x
 ARG DEBIAN_FRONTEND=noninteractive
 
 COPY bin/provision-base.sh /root/provision-base.sh
