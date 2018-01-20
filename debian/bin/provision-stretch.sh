@@ -5,7 +5,7 @@
 echo "running provision for"
 figlet $(lsb_release -sc)
 
-echo "nothing to do for wheezy right now"
+echo "nothing to do for stretch right now"
 
 
 
