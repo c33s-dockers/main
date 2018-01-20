@@ -7,10 +7,10 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # does not use base-provision.sh
 #COPY bin/provision-base.sh /root/provision-base.sh
-#RUN chmod +x /root/provision-base.sh && /root/provision-base.sh
+#RUN chmod +x /root/provision-base.sh; sync; /root/provision-base.sh
 
 COPY bin/provision-${DOCKER_PHP_VERSION}.sh /root/provision-${DOCKER_PHP_VERSION}.sh
-RUN chmod +x /root/provision-${DOCKER_PHP_VERSION}.sh && /root/provision-${DOCKER_PHP_VERSION}.sh && php -v
+RUN chmod +x /root/provision-${DOCKER_PHP_VERSION}.sh; sync; /root/provision-${DOCKER_PHP_VERSION}.sh; php -v
 
 CMD ["php", "-a"]
 
