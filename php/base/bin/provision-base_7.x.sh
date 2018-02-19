@@ -40,6 +40,8 @@ curl -sL https://deb.nodesource.com/setup_8.x | bash -
 apt-get update && apt-get install --quiet --yes --no-install-recommends \
         yarn \
         nodejs \
+        mysql-client \
+        postgresql-client \
         php$DOCKER_PHP_VERSION-cli \
         php$DOCKER_PHP_VERSION-apcu \
         php$DOCKER_PHP_VERSION-apcu-bc \
