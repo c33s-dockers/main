@@ -37,11 +37,16 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.lis
 curl -sL https://deb.nodesource.com/setup_8.x | bash -
 
 ########################################################################################################################
+wget https://mozjpeg.codelove.de/bin/mozjpeg_3.1_amd64.deb
+dpkg -i mozjpeg_3.1_amd64.deb
 apt-get update && apt-get install --quiet --yes --no-install-recommends \
         yarn \
         nodejs \
         mysql-client \
         postgresql-client \
+        jpegoptim \
+        optipng \
+        pngquant \
         php$DOCKER_PHP_VERSION-cli \
         php$DOCKER_PHP_VERSION-apcu \
         php$DOCKER_PHP_VERSION-apcu-bc \
