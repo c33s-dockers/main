@@ -105,3 +105,7 @@ wget --no-verbose https://symfony.com/installer --output-document=/usr/local/bin
 wget --no-verbose https://github.com/consolidation/Robo/releases/download/${DOCKER_VERSION_ROBO}/robo.phar --output-document=/usr/local/bin/robo \
     && chmod a+x /usr/local/bin/robo \
     && robo --version
+
+wget --no-verbose https://github.com/box-project/box2/releases/download/${DOCKER_VERSION_BOX}/box-${DOCKER_VERSION_BOX}.phar --output-document=/usr/local/bin/box \
+    && chmod a+x /usr/local/bin/box \
+    && box --version
