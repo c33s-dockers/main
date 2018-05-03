@@ -112,6 +112,7 @@ cat <<<$SSH_CONFIG >> ~/.ssh/config
 IFS=$IFSBACKUP
 cat ~/.ssh/config
 EOF
+chmod ugo+x /usr/local/bin/ci-ssh-key-mapper
 
 ########################################################################################################################
 # Php Phar Utils (code duplicated in `provision-5.6.sh`)
