@@ -86,6 +86,32 @@ apt-get autoremove -qq && ( -rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* >/dev
     && echo 'variables_order="EGPCS"'       >> /etc/php/${DOCKER_PHP_VERSION}/cli/conf.d/env.ini
 #    && rm -rf /etc/php/$DOCKER_PHP_VERSION/cli/conf.d/20-xdebug.ini
 
+cat << EOF > /usr/local/bin/ci-ssh-key-mapper
+#!/bin/bash
+
+TARGET=${1^^}
+
+NAME_KEY_PRIVATE=${TARGET}_KEY_PRIVATE
+NAME_HOST_KEY=${TARGET}_HOST_KEY
+NAME_SSH_CONFIG_EVAL=${TARGET}_SSH_CONFIG_EVAL
+NAME_SSH_CONFIG=${TARGET}_SSH_CONFIG
+
+KEY_PRIVATE=${!NAME_KEY_PRIVATE}
+HOST_KEY=${!NAME_HOST_KEY}
+SSH_CONFIG_EVAL=${!NAME_SSH_CONFIG_EVAL}
+SSH_CONFIG=${!NAME_SSH_CONFIG}
+
+eval $(ssh-agent -s)
+ssh-add <(echo "$KEY_PRIVATE")
+echo -e "$HOST_KEY\n\n" > ~/.ssh/known_hosts
+cat ~/.ssh/known_hosts
+IFSBACKUP=$IFS
+IFS=";"
+eval $SSH_CONFIG_EVAL
+cat <<<$SSH_CONFIG >> ~/.ssh/config
+IFS=$IFSBACKUP
+cat ~/.ssh/config
+EOF
 
 ########################################################################################################################
 # Php Phar Utils (code duplicated in `provision-5.6.sh`)
