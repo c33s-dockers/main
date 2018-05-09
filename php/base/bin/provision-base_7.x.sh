@@ -119,6 +119,14 @@ chmod 644 ~/.ssh/known_hosts
 EOF
 chmod ugo+x /usr/local/bin/ci-ssh-key-mapper
 
+cat << EOF > /etc/profile.d/mozjpeg.sh
+if ! echo $PATH | grep -q /opt/mozjpeg/bin ; then
+  export PATH=$PATH:/opt/mozjpeg/bin
+fi
+
+EOF
+chmod ugo+x /etc/profile.d/mozjpeg.sh
+
 ########################################################################################################################
 # Php Phar Utils (code duplicated in `provision-5.6.sh`)
 ########################################################################################################################
