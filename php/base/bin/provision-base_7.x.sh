@@ -89,28 +89,33 @@ apt-get autoremove -qq && ( -rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* >/dev
 cat << EOF > /usr/local/bin/ci-ssh-key-mapper
 #!/bin/bash
 
+if [ $# -eq 0 ]
+  then
+    echo "No arguments supplied"
+    exit 1
+fi
+
 TARGET=${1^^}
 
+NAME_HOST=${TARGET}_HOST
+NAME_PATH=${TARGET}_PATH
+NAME_PORT=${TARGET}_PORT
 NAME_KEY_PRIVATE=${TARGET}_KEY_PRIVATE
-NAME_HOST_KEY=${TARGET}_HOST_KEY
-NAME_SSH_CONFIG_EVAL=${TARGET}_SSH_CONFIG_EVAL
-NAME_SSH_CONFIG=${TARGET}_SSH_CONFIG
+NAME_KNOWN_HOSTS=${TARGET}_KNOWN_HOSTS
 
-KEY_PRIVATE=${!NAME_KEY_PRIVATE}
-HOST_KEY=${!NAME_HOST_KEY}
-SSH_CONFIG_EVAL=${!NAME_SSH_CONFIG_EVAL}
-SSH_CONFIG=${!NAME_SSH_CONFIG}
+export DEPLOY_HOST=${!NAME_HOST}
+export DEPLOY_PATH=${!NAME_PATH}
+export DEPLOY_PORT=${!NAME_PORT}
+export DEPLOY_KEY_PRIVATE=${!NAME_KEY_PRIVATE}
+export DEPLOY_KNOWN_HOSTS=${!NAME_KNOWN_HOSTS}
+
 
 eval $(ssh-agent -s)
-ssh-add <(echo "$KEY_PRIVATE")
-echo -e "$HOST_KEY\n\n" > ~/.ssh/known_hosts
-cat ~/.ssh/known_hosts
-IFSBACKUP=$IFS
-IFS=";"
-eval $SSH_CONFIG_EVAL
-cat <<<$SSH_CONFIG >> ~/.ssh/config
-IFS=$IFSBACKUP
-cat ~/.ssh/config
+echo "$DEPLOY_KEY_PRIVATE" | tr -d '\r' | ssh-add - > /dev/null
+ssh-add -L
+echo "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+chmod 644 ~/.ssh/known_hosts
+
 EOF
 chmod ugo+x /usr/local/bin/ci-ssh-key-mapper
 
