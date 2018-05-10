@@ -21,3 +21,10 @@ echo "nothing to do right now"
 #
 # https://github.com/phpseclib/mcrypt_compat
 # https://packagist.org/packages/phpseclib/mcrypt_compat
+#
+# or
+#
+# Varien_Crypt_Openssl
+# https://github.com/OpenMage/magento-lts/issues/449
+
+
