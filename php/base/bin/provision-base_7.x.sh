@@ -65,7 +65,6 @@ apt-get update && apt-get install --quiet --yes --no-install-recommends \
         php$DOCKER_PHP_VERSION-ldap \
         php$DOCKER_PHP_VERSION-readline \
         php$DOCKER_PHP_VERSION-mbstring \
-        php$DOCKER_PHP_VERSION-mcrypt \
         php$DOCKER_PHP_VERSION-memcached \
         php$DOCKER_PHP_VERSION-mongodb \
         php$DOCKER_PHP_VERSION-mysql \
@@ -79,6 +78,8 @@ apt-get update && apt-get install --quiet --yes --no-install-recommends \
         php$DOCKER_PHP_VERSION-xmlrpc \
         php$DOCKER_PHP_VERSION-xsl \
         php$DOCKER_PHP_VERSION-zip
+
+#        php$DOCKER_PHP_VERSION-mcrypt \ # is installed for php7.0 and php7.1, in php7.2 it is deprecated.
 apt-get clean -qq
 apt-get autoremove -qq && ( -rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* >/dev/null 2>&1 || true ) \
     && echo 'date.timezone="Europe/Vienna"' >> /etc/php/${DOCKER_PHP_VERSION}/cli/conf.d/timezone.ini \

@@ -5,4 +5,5 @@
 echo "running provision for"
 figlet PHP ${DOCKER_PHP_VERSION}
 
-echo "nothing to do right now"
+apt-get update && apt-get install --quiet --yes --no-install-recommends \
+        php$DOCKER_PHP_VERSION-mcrypt
