@@ -89,11 +89,12 @@ apt-get autoremove -qq && ( -rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* >/dev
 cat << EOF > /usr/local/bin/ci-ssh-key-mapper
 #!/bin/bash
 
-if [ $# -eq 0 ]
-  then
-    echo "No arguments supplied"
-    exit 1
-fi
+echo $1
+#if [ $# -eq 0 ]
+#  then
+#    echo "No arguments supplied"
+#    exit 1
+#fi
 
 TARGET=${1^^}
 
