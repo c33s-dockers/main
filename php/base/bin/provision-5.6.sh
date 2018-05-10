@@ -69,7 +69,7 @@ apt-get autoremove -qq && ( -rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* >/dev
     && ( echo 'date.timezone="Europe/Vienna"' >> /etc/php5/cli/conf.d/timezone.ini || true )
 #    && rm -rf /etc/php/$DOCKER_PHP_VERSION_MAJOR/cli/conf.d/20-xdebug.ini
 
-cat << EOF > /usr/local/bin/ci-ssh-key-mapper
+cat << 'EOF' > /usr/local/bin/ci-ssh-key-mapper
 #!/bin/bash
 
 echo $1

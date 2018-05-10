@@ -86,7 +86,7 @@ apt-get autoremove -qq && ( -rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* >/dev
     && echo 'variables_order="EGPCS"'       >> /etc/php/${DOCKER_PHP_VERSION}/cli/conf.d/env.ini
 #    && rm -rf /etc/php/$DOCKER_PHP_VERSION/cli/conf.d/20-xdebug.ini
 
-cat << EOF > /usr/local/bin/ci-ssh-key-mapper
+cat << 'EOF' > /usr/local/bin/ci-ssh-key-mapper
 #!/bin/bash
 
 echo $1
