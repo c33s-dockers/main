@@ -5,7 +5,7 @@
 echo "running provision for"
 figlet PHP ${DOCKER_PHP_VERSION}
 
-echo "nothing to do right now"
+echo 'phar.readonly="0"' >> /etc/php/7.2/cli/conf.d/ci.ini
 
 # mcrypt deprecated for php7.2
 # use pecl to install
@@ -28,3 +28,6 @@ echo "nothing to do right now"
 # https://github.com/OpenMage/magento-lts/issues/449
 
 
+wget --no-verbose https://github.com/humbug/box/releases/download/${DOCKER_VERSION_BOX3}/box.phar --output-document=/usr/local/bin/box3 \
+    && chmod a+x /usr/local/bin/box3 \
+    && box3 --version
