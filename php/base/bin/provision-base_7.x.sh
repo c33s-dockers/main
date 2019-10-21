@@ -1,11 +1,14 @@
 #!/bin/bash
 
 case "$(lsb_release -sc)" in
-wheezy) #7
-    echo "nothig to do for wheezy"
+########################################################################################################################
+wheezy) #7 #############################################################################################################
+    echo "wheezy is deprecated"
     ;;
-jessie) #8
-    # DotDeb Repo ######################################################################################################
+########################################################################################################################
+jessie) #8 #############################################################################################################
+#    RELEASE_SPECIFIC_PACKAGES=mysql-client
+    # DotDeb Repo ###
     cat << EOF > /etc/apt/sources.list.d/dotdeb.list
         deb http://packages.dotdeb.org jessie all
         deb-src http://packages.dotdeb.org jessie all
@@ -14,9 +17,12 @@ EOF
         && apt-key add dotdeb.gpg \
         && apt-get update \
         && rm dotdeb.gpg
+    # END DotDeb Repo ###
     ;;
-stretch) #9
-    # Sury Repo ########################################################################################################
+########################################################################################################################
+stretch) #9 ############################################################################################################
+#    RELEASE_SPECIFIC_PACKAGES=mysql-client
+    # Sury Repo ###
     cat << EOF > /etc/apt/sources.list.d/php.list
         deb https://packages.sury.org/php/ $(lsb_release -sc) main
 EOF
@@ -24,11 +30,14 @@ EOF
     apt-key add php.gpg
     apt-get update
     rm php.gpg
+    # END Sury Repo ###
     ;;
-buster) #10
-    echo "nothing to do for buster"
+########################################################################################################################
+buster) #10 ############################################################################################################
+#    RELEASE_SPECIFIC_PACKAGES=default-mysql-client
     ;;
-*)
+########################################################################################################################
+*) #* ##################################################################################################################
     echo "WARNING: no compatible release"
     ;;
 esac
@@ -50,7 +59,7 @@ dpkg -i mozjpeg_3.1_amd64.deb
 apt-get update && apt-get install --quiet --yes --no-install-recommends \
         yarn \
         nodejs \
-        mysql-client \
+        mariadb-client \
         postgresql-client \
         jpegoptim \
         optipng \
