@@ -1,20 +1,11 @@
 #!/bin/bash
 
-if [ "$(lsb_release -sc)" = "stretch" ]; then
-    ########################################################################################################################
-    #  Sury Repo
-    ########################################################################################################################
-    cat << EOF > /etc/apt/sources.list.d/php.list
-        deb https://packages.sury.org/php/ $(lsb_release -sc) main
-EOF
-    wget --no-clobber --quiet -O ./php.gpg https://packages.sury.org/php/apt.gpg
-    apt-key add php.gpg
-    apt-get update
-    rm php.gpg
-else
-    ########################################################################################################################
-    # DotDeb Repo
-    ########################################################################################################################
+case "$(lsb_release -sc)" in
+wheezy) #7
+    echo "nothig to do for wheezy"
+    ;;
+jessie) #8
+    # DotDeb Repo ######################################################################################################
     cat << EOF > /etc/apt/sources.list.d/dotdeb.list
         deb http://packages.dotdeb.org jessie all
         deb-src http://packages.dotdeb.org jessie all
@@ -23,7 +14,24 @@ EOF
         && apt-key add dotdeb.gpg \
         && apt-get update \
         && rm dotdeb.gpg
-fi
+    ;;
+stretch) #9
+    # Sury Repo ########################################################################################################
+    cat << EOF > /etc/apt/sources.list.d/php.list
+        deb https://packages.sury.org/php/ $(lsb_release -sc) main
+EOF
+    wget --no-clobber --quiet -O ./php.gpg https://packages.sury.org/php/apt.gpg
+    apt-key add php.gpg
+    apt-get update
+    rm php.gpg
+    ;;
+buster) #10
+    echo "nothing to do for buster"
+    ;;
+*)
+    echo "WARNING: no compatible release"
+    ;;
+esac
 
 ########################################################################################################################
 # Yarn Repo
@@ -139,10 +147,6 @@ wget --no-verbose https://getcomposer.org/download/${DOCKER_VERSION_COMPOSER}/co
     && composer --ansi global require hirak/prestissimo:${DOCKER_VERSION_COMPOSER_PRESTISSIMO} \
     && composer --ansi global require fxp/composer-asset-plugin:${DOCKER_VERSION_COMPOSER_ASSET_PLUGIN} \
     && composer --version
-
-wget --no-verbose https://symfony.com/installer --output-document=/usr/local/bin/symfony \
-    && chmod a+x /usr/local/bin/symfony \
-    && symfony --version
 
 wget --no-verbose https://github.com/consolidation/Robo/releases/download/${DOCKER_VERSION_ROBO}/robo.phar --output-document=/usr/local/bin/robo \
     && chmod a+x /usr/local/bin/robo \
