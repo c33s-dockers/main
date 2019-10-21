@@ -1,4 +1,4 @@
-FROM c33s/debian:latest
+FROM c33s/debian:stretch
 
 MAINTAINER c33s
 
