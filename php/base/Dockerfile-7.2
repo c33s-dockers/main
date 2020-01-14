@@ -26,7 +26,7 @@ RUN chmod +x /root/provision-${DOCKER_PHP_VERSION}-pre.sh; sync; /root/provision
 COPY bin/provision-base_7.x.sh /root/provision-base.sh
 RUN chmod +x /root/provision-base.sh; sync; /root/provision-base.sh
 
-COPY bin/provision-${DOCKER_PHP_VERSION}.sh /root/provision-${DOCKER_PHP_VERSION}.sh
+COPY bin/provision-${DOCKER_PHP_VERSION}-post.sh /root/provision-${DOCKER_PHP_VERSION}-post.sh
 RUN chmod +x /root/provision-${DOCKER_PHP_VERSION}-post.sh; sync; /root/provision-${DOCKER_PHP_VERSION}-post.sh; php -v
 
 CMD ["php", "-a"]
