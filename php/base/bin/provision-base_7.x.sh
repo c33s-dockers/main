@@ -154,6 +154,8 @@ fi
 EOF
 chmod ugo+x /etc/profile.d/mozjpeg.sh
 
+echo 'phar.readonly="0"' >> /etc/php/${DOCKER_PHP_VERSION}/cli/conf.d/ci.ini
+
 ########################################################################################################################
 # Php Phar Utils (partial code duplicated in `provision-5.6.sh`)
 ########################################################################################################################
@@ -172,3 +174,12 @@ wget --no-verbose https://github.com/consolidation/Robo/releases/download/${DOCK
 wget --no-verbose https://github.com/box-project/box2/releases/download/${DOCKER_VERSION_BOX}/box-${DOCKER_VERSION_BOX}.phar --output-document=/usr/local/bin/box \
     && chmod a+x /usr/local/bin/box \
     && box --version
+
+if version_compare_lte "$DOCKER_PHP_VERSION" "7.2"; then
+    echo "installing box3.phar requires php7.2"
+    wget --no-verbose https://github.com/humbug/box/releases/download/${DOCKER_VERSION_BOX3}/box.phar --output-document=/usr/local/bin/box3 \
+        && chmod a+x /usr/local/bin/box3 \
+        && box3 --version
+else
+    echo "skipped to install box3.phar, php version to low"
+fi
