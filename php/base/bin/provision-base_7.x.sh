@@ -155,7 +155,7 @@ EOF
 chmod ugo+x /etc/profile.d/mozjpeg.sh
 
 ########################################################################################################################
-# Php Phar Utils (code duplicated in `provision-5.6.sh`)
+# Php Phar Utils (partial code duplicated in `provision-5.6.sh`)
 ########################################################################################################################
 
 wget --no-verbose https://getcomposer.org/download/${DOCKER_VERSION_COMPOSER}/composer.phar --output-document=/usr/local/bin/composer \
