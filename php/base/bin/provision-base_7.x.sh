@@ -5,7 +5,15 @@ version_compare_lte() {
 }
 
 version_compare_lt() {
-    [ "$1" = "$2" ] && return 1 || verlte $1 $2
+    [ "$1" = "$2" ] && return 1 || version_compare_lte $1 $2
+}
+
+version_compare_gte() {
+    [  "$1" = "`echo -e "$1\n$2" | sort --version-sort --reverse | head -n1`" ]
+}
+
+version_compare_gt() {
+    [ "$1" = "$2" ] && return 1 || version_compare_gte $1 $2
 }
 
 case "$(lsb_release -sc)" in
