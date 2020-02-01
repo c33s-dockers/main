@@ -80,6 +80,7 @@ apt-get update && apt-get install --quiet --yes --no-install-recommends \
         jpegoptim \
         optipng \
         pngquant \
+        dnsutils \
         php$DOCKER_PHP_VERSION-cli \
         php$DOCKER_PHP_VERSION-apcu \
         php$DOCKER_PHP_VERSION-apcu-bc \
@@ -123,21 +124,23 @@ apt-get autoremove -qq && ( -rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* >/dev
 cat << 'EOF' > /usr/local/bin/ci-ssh-key-mapper
 #!/bin/bash
 
-echo $1
-#if [ $# -eq 0 ]
-#  then
-#    echo "No arguments supplied"
-#    exit 1
-#fi
+TARGET=""
+if [ $# -ge 1 ]
+  then
+    # ^^=uppercase
+    TARGET="${1^^}_"
+fi
 
-TARGET=${1^^}
+NAME_HOST=${TARGET}HOST
+NAME_PATH=${TARGET}PATH
+NAME_PORT=${TARGET}PORT
+NAME_KEY_PRIVATE=${TARGET}KEY_PRIVATE
+NAME_KNOWN_HOSTS=${TARGET}KNOWN_HOSTS
 
-NAME_HOST=${TARGET}_HOST
-NAME_PATH=${TARGET}_PATH
-NAME_PORT=${TARGET}_PORT
-NAME_KEY_PRIVATE=${TARGET}_KEY_PRIVATE
-NAME_KNOWN_HOSTS=${TARGET}_KNOWN_HOSTS
-
+# ${!....}=indirect expansion -> variable variable -> content of DEPLOY_HOST = content of the variable which name is
+# stored in the variable NAME_HOST. so if NAME_HOST contains PRODUCTION_HOST where PRODUCTION_HOST is example.com the
+# content of DEPLOY_HOST=example.com
+# https://stackoverflow.com/a/8515492
 export DEPLOY_HOST=${!NAME_HOST}
 export DEPLOY_PATH=${!NAME_PATH}
 export DEPLOY_PORT=${!NAME_PORT}
