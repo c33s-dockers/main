@@ -107,6 +107,8 @@ apt-get update && apt-get install --quiet --yes --no-install-recommends \
         php$DOCKER_PHP_VERSION-redis \
         php$DOCKER_PHP_VERSION-sqlite3 \
         php$DOCKER_PHP_VERSION-ssh2 \
+        php$DOCKER_PHP_VERSION-soap \
+        php$DOCKER_PHP_VERSION-mailparse \
         php$DOCKER_PHP_VERSION-xdebug \
         php$DOCKER_PHP_VERSION-xml \
         php$DOCKER_PHP_VERSION-xmlrpc \
