@@ -124,18 +124,18 @@ apt-get autoremove -qq && ( -rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* >/dev
 cat << 'EOF' > /usr/local/bin/ci-ssh-key-mapper
 #!/bin/bash
 
-TARGET=""
+PREFIX=""
 if [ $# -ge 1 ]
   then
     # ^^=uppercase
-    TARGET="${1^^}_"
+    PREFIX="${1^^}_"
 fi
 
-NAME_HOST=${TARGET}HOST
-NAME_PATH=${TARGET}PATH
-NAME_PORT=${TARGET}PORT
-NAME_KEY_PRIVATE=${TARGET}KEY_PRIVATE
-NAME_KNOWN_HOSTS=${TARGET}KNOWN_HOSTS
+NAME_HOST=${PREFIX}HOST
+NAME_PATH=${PREFIX}PATH
+NAME_PORT=${PREFIX}PORT
+NAME_KEY_PRIVATE=${PREFIX}KEY_PRIVATE
+NAME_KNOWN_HOSTS=${PREFIX}KNOWN_HOSTS
 
 # ${!....}=indirect expansion -> variable variable -> content of DEPLOY_HOST = content of the variable which name is
 # stored in the variable NAME_HOST. so if NAME_HOST contains PRODUCTION_HOST where PRODUCTION_HOST is example.com the
