@@ -103,6 +103,7 @@ apt-get update && apt-get install --quiet --yes --no-install-recommends \
         php$DOCKER_PHP_VERSION-mongodb \
         php$DOCKER_PHP_VERSION-mysql \
         php$DOCKER_PHP_VERSION-opcache \
+        php$DOCKER_PHP_VERSION-pcov \
         php$DOCKER_PHP_VERSION-pgsql \
         php$DOCKER_PHP_VERSION-redis \
         php$DOCKER_PHP_VERSION-sqlite3 \
