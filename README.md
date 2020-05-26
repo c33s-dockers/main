@@ -9,7 +9,7 @@ Autobuild config for c33s Debian & Php docker images.
 ### Debian
 
 ![](https://img.shields.io/docker/build/c33s/debian)
-![](https://img.shields.io/docker/cloud/automated/c33s/debian?label="debian docker build")
+![](https://img.shields.io/docker/cloud/automated/c33s/debian?label=debian%20docker%20build)
 ![](https://img.shields.io/docker/pulls/c33s/debian)
 
 ![](https://img.shields.io/badge/image_sizes--grey?logo=debian)
