@@ -50,7 +50,16 @@ EOF
     ;;
 ########################################################################################################################
 buster) #10 ############################################################################################################
-#    RELEASE_SPECIFIC_PACKAGES=default-mysql-client
+#    RELEASE_SPECIFIC_PACKAGES=mysql-client
+    # Sury Repo ###
+    cat << EOF > /etc/apt/sources.list.d/php.list
+        deb https://packages.sury.org/php/ $(lsb_release -sc) main
+EOF
+    wget --no-clobber --quiet -O ./php.gpg https://packages.sury.org/php/apt.gpg
+    apt-key add php.gpg
+    apt-get update
+    rm php.gpg
+    # END Sury Repo ###
     ;;
 ########################################################################################################################
 *) #* ##################################################################################################################
@@ -117,6 +126,14 @@ apt-get update && apt-get install --quiet --yes --no-install-recommends \
         php$DOCKER_PHP_VERSION-zip
 
 #        php$DOCKER_PHP_VERSION-mcrypt \ # is installed for php7.0 and php7.1, in php7.2 it is deprecated.
+
+if version_compare_gte "$DOCKER_PHP_VERSION" "7.1"; then
+apt-get update && apt-get install --quiet --yes --no-install-recommends \
+        php$DOCKER_PHP_VERSION-pcov \
+else
+    echo "skipped to install pcov, php version to low. sury only provides pcov requires a minimum php version of 7.1"
+fi
+
 apt-get clean -qq
 apt-get autoremove -qq && ( -rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* >/dev/null 2>&1 || true ) \
     && echo 'date.timezone="Europe/Vienna"' >> /etc/php/${DOCKER_PHP_VERSION}/cli/conf.d/timezone.ini \
@@ -195,5 +212,5 @@ if version_compare_gte "$DOCKER_PHP_VERSION" "7.1"; then
         && chmod a+x /usr/local/bin/box3 \
         && box3 --version
 else
-    echo "skipped to install box3.phar, php version to low. box3 requires php 7.1"
+    echo "skipped to install box3.phar, php version to low. box3 requires a minimum php version of 7.1"
 fi
