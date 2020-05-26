@@ -13,26 +13,26 @@ Autobuild config for c33s Debian & Php docker images.
 ![](https://img.shields.io/docker/pulls/c33s/debian)
 
 ![](https://img.shields.io/badge/image_sizes--grey?logo=debian)
-![](https://img.shields.io/docker/image-size/c33s/debian/latest?label="latest")
-![](https://img.shields.io/docker/image-size/c33s/debian/buster?label="buster 10")
-![](https://img.shields.io/docker/image-size/c33s/debian/stretch?label="stretch 9")
-![](https://img.shields.io/docker/image-size/c33s/debian/jessie?label="jessie 8")
-![](https://img.shields.io/docker/image-size/c33s/debian/wheezy?label="wheezy 7")
+![](https://img.shields.io/docker/image-size/c33s/debian/latest?label=latest)
+![](https://img.shields.io/docker/image-size/c33s/debian/buster?label=buster%2010)
+![](https://img.shields.io/docker/image-size/c33s/debian/stretch?label=stretch%209)
+![](https://img.shields.io/docker/image-size/c33s/debian/jessie?label=jessie%208)
+![](https://img.shields.io/docker/image-size/c33s/debian/wheezy?label=wheezy%207)
 
 ### Php
 
 ![](https://img.shields.io/docker/build/c33s/php)
-![](https://img.shields.io/docker/cloud/automated/c33s/php?label="php docker build")
+![](https://img.shields.io/docker/cloud/automated/c33s/php?label=php%20docker%20build)
 ![](https://img.shields.io/docker/pulls/c33s/php)
 
 ![](https://img.shields.io/badge/image_sizes--gray?logo=php)
-![](https://img.shields.io/docker/image-size/c33s/php/latest?label="latest")
-![](https://img.shields.io/docker/image-size/c33s/php/7.4?label="7.4")
-![](https://img.shields.io/docker/image-size/c33s/php/7.3?label="7.3")
-![](https://img.shields.io/docker/image-size/c33s/php/7.2?label="7.2")
-![](https://img.shields.io/docker/image-size/c33s/php/7.1?label="7.1")
-![](https://img.shields.io/docker/image-size/c33s/php/7.0?label="7.0")
-![](https://img.shields.io/docker/image-size/c33s/php/5.6?label="5.6")
+![](https://img.shields.io/docker/image-size/c33s/php/latest?label=latest)
+![](https://img.shields.io/docker/image-size/c33s/php/7.4?label=7.4)
+![](https://img.shields.io/docker/image-size/c33s/php/7.3?label=7.3)
+![](https://img.shields.io/docker/image-size/c33s/php/7.2?label=7.2)
+![](https://img.shields.io/docker/image-size/c33s/php/7.1?label=7.1)
+![](https://img.shields.io/docker/image-size/c33s/php/7.0?label=7.0)
+![](https://img.shields.io/docker/image-size/c33s/php/5.6?label=5.6)
 
 ## Images
 
