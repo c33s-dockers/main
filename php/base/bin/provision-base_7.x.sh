@@ -76,7 +76,37 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.lis
 ########################################################################################################################
 # Node Repo
 ########################################################################################################################
-curl -sL https://deb.nodesource.com/setup_8.x | bash -
+#DEPRECATION WARNING
+#Node.js 8.x LTS Carbon is no longer actively supported!
+#You will not receive security or critical stability updates for this version.
+#You should migrate to a supported version of Node.js as soon as possible.
+#Use the installation script that corresponds to the version of Node.js you
+#wish to install. e.g.
+#* https://deb.nodesource.com/setup_10.x — Node.js 10 LTS "Dubnium"
+#* https://deb.nodesource.com/setup_12.x — Node.js 12 LTS "Erbium" (recommended)
+#* https://deb.nodesource.com/setup_14.x — Node.js 14 LTS "Fermium"
+case $DOCKER_PHP_VERSION in
+    7.0)
+        curl -sL https://deb.nodesource.com/setup_8.x | bash -
+        ;;
+    7.1)
+        curl -sL https://deb.nodesource.com/setup_8.x | bash -
+        ;;
+    7.2)
+        curl -sL https://deb.nodesource.com/setup_8.x | bash -
+        ;;
+    7.3)
+        curl -sL https://deb.nodesource.com/setup_12.x | bash -
+        ;;
+    7.4)
+        curl -sL https://deb.nodesource.com/setup_12.x | bash -
+        ;;
+    *)
+        echo "invalid php version. node install error"
+        exit 1
+        #curl -sL https://deb.nodesource.com/setup_12.x | bash -
+        ;;
+esac
 
 ########################################################################################################################
 wget https://mozjpeg.codelove.de/bin/mozjpeg_3.1_amd64.deb
