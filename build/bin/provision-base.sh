@@ -4,6 +4,7 @@
 ########################################################################################################################
 apt-get update
 apt-get install --quiet --yes --no-install-recommends \
+    sudo \
     build-essential \
     debhelper \
     devscripts \
