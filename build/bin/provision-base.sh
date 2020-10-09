@@ -30,3 +30,4 @@ apt-get install --quiet --yes --no-install-recommends \
     equivs
 apt-get clean -qq
 apt-get autoremove -qq && ( -rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* >/dev/null 2>&1 || true )
+gem install --no-document fpm
