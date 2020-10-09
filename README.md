@@ -4,7 +4,10 @@ Autobuild config for c33s Debian & Php docker images.
 
 ---
 
+## Shields
+
 ![github license](https://img.shields.io/github/license/c33s-dockers/main)
+
 
 ### Debian
 
@@ -34,6 +37,17 @@ Autobuild config for c33s Debian & Php docker images.
 ![](https://img.shields.io/docker/image-size/c33s/php/7.0?label=7.0)
 ![](https://img.shields.io/docker/image-size/c33s/php/5.6?label=5.6)
 
+### Build
+
+![](https://img.shields.io/docker/build/c33s/build)
+![](https://img.shields.io/docker/cloud/automated/c33s/build?label=build%20docker%20build)
+![](https://img.shields.io/docker/pulls/c33s/build)
+
+![](https://img.shields.io/badge/image_sizes--gray?logo=build)
+![](https://img.shields.io/docker/image-size/c33s/build/latest?label=latest)
+![](https://img.shields.io/docker/image-size/c33s/build/buster?label=buster%2010)
+![](https://img.shields.io/docker/image-size/c33s/build/stretch?label=stretch%209)
+
 ## Images
 
 ### Debian Images
@@ -54,6 +68,11 @@ Autobuild config for c33s Debian & Php docker images.
 - php 7.3, buster, sury
 - php 7.4, buster, sury
 
+### Build Images
+
+- build stretch 9
+- build buster 10
+
 ## Links
 
 - [Docker Hub](https://hub.docker.com/r/c33s/)
@@ -63,3 +82,4 @@ Autobuild config for c33s Debian & Php docker images.
 - [Main Repo](https://gitlab.com/c33s.infrastructure/docker/)
 - [Windows Node Version Manager](https://github.com/coreybutler/nvm-windows)
 - [Linux/OSX Node Version Manager](https://github.com/nvm-sh/nvm)
+
