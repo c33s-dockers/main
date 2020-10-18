@@ -43,7 +43,7 @@ Autobuild config for c33s Debian & Php docker images.
 ![](https://img.shields.io/docker/cloud/automated/c33s/build?label=build%20docker%20build)
 ![](https://img.shields.io/docker/pulls/c33s/build)
 
-![](https://img.shields.io/badge/image_sizes--gray?logo=build)
+![](https://img.shields.io/badge/image_sizes--gray?logo=docker)
 ![](https://img.shields.io/docker/image-size/c33s/build/latest?label=latest)
 ![](https://img.shields.io/docker/image-size/c33s/build/buster?label=buster%2010)
 ![](https://img.shields.io/docker/image-size/c33s/build/stretch?label=stretch%209)
