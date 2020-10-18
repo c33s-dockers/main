@@ -27,7 +27,9 @@ apt-get install --quiet --yes --no-install-recommends \
     ruby-dev \
     checkinstall \
     fakeroot \
-    equivs
+    equivs \
+    g++ \
+    curl
 gem install --no-document fpm
 apt-get clean -qq
 apt-get autoremove -qq && ( -rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* >/dev/null 2>&1 || true )
