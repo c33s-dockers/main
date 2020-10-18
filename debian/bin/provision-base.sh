@@ -22,6 +22,8 @@ apt-get install --quiet --yes --no-install-recommends \
     software-properties-common \
     unzip \
     wget \
+    tree \
+    bzip2 \
     zip
 apt-get clean -qq
 apt-get autoremove -qq && ( -rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* >/dev/null 2>&1 || true )
