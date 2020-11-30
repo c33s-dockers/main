@@ -3,6 +3,9 @@ stages:
 #  - test
 #  - deploy
 
+services:
+  - docker:dind
+
 .base_build:
   stage: build
   script:
