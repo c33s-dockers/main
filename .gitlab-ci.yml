@@ -1,0 +1,77 @@
+stages:
+#  - build
+  - test
+#  - deploy
+
+services:
+  - docker:dind
+
+.test_base:
+  stage: test
+  image: docker:latest
+.test_debian:
+  extends: .test_base
+  only:
+    changes:
+      - debian/**/*
+.test_php:
+  extends: .test_base
+  only:
+    changes:
+      - php/**/*
+.test_build:
+  extends: .test_base
+  only:
+    changes:
+      - build/**/*
+
+test_wheezy:
+  extends: .test_debian
+  script:
+    - cd debian && docker build --file Dockerfile-wheezy .
+test_jessie:
+  extends: .test_debian
+  script:
+    - cd debian && docker build --file Dockerfile-jessie .
+test_stretch:
+  extends: .test_debian
+  script:
+    - cd debian && docker build --file Dockerfile-stretch .
+test_buster:
+  extends: .test_debian
+  script:
+    - cd debian && docker build --file Dockerfile-buster .
+
+test_php5.6:
+  extends: .test_php
+  script:
+    - cd php/base && docker build --file Dockerfile-5.6 .
+test_php7.0:
+  extends: .test_php
+  script:
+    - cd php/base && docker build --file Dockerfile-7.0 .
+test_php7.1:
+  extends: .test_php
+  script:
+    - cd php/base && docker build --file Dockerfile-7.1 .
+test_php7.2:
+  extends: .test_php
+  script:
+    - cd php/base && docker build --file Dockerfile-7.2 .
+test_php7.3:
+  extends: .test_php
+  script:
+    - cd php/base && docker build --file Dockerfile-7.3 .
+test_php7.4:
+  extends: .test_php
+  script:
+    - cd php/base && docker build --file Dockerfile-7.4 .
+
+test_build_stretch:
+  extends: .test_build
+  script:
+    - cd build && docker build --file Dockerfile-stretch .
+test_build_buster:
+  extends: .test_build
+  script:
+    - cd build && docker build --file Dockerfile-buster .

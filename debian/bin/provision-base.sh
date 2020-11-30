@@ -53,3 +53,17 @@ Host bitbucket.org
 EOF
 #rm /etc/ssh/ssh_host_rsa_key
 #rm /etc/ssh/ssh_host_dsa_key
+
+########################################################################################################################
+# minio
+########################################################################################################################
+figlet $(lsb_release -sc)
+
+MINIO_PATH=/usr/local/bin/mi
+
+wget --quiet https://dl.min.io/client/mc/release/linux-amd64/archive/mc.RELEASE.${MINIO_VERSION} -O ${MINIO_PATH} \
+&& chmod +x ${MINIO_PATH}
+echo "${MINIO_SHA256} ${MINIO_PATH}" | sha256sum --check - || exit 1
+
+
+mi --version
