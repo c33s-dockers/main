@@ -1,0 +1,9 @@
+stages:
+  - build
+#  - test
+#  - deploy
+
+.base_build:
+  stage: build
+  script:
+    - cd debian && docker build --file Dockerfile-buser .
