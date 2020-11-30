@@ -7,3 +7,7 @@ stages:
   stage: build
   script:
     - cd debian && docker build --file Dockerfile-buser .
+
+build_buster_10:
+  extends: .base_build
+  image: c33s/build:buster
