@@ -6,7 +6,7 @@ stages:
 .base_build:
   stage: build
   script:
-    - cd debian && docker build --file Dockerfile-buser .
+    - cd debian && docker build --file Dockerfile-buster .
 
 build_buster_10:
   extends: .base_build
