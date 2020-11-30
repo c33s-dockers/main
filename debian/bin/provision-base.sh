@@ -65,4 +65,5 @@ wget --quiet https://dl.min.io/client/mc/release/linux-amd64/archive/mc.RELEASE.
 && chmod +x ${MINIO_PATH}
 echo "${MINIO_SHA256} ${MINIO_PATH}" | sha256sum --check - || exit 1
 
+
 mi --version
