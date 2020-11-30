@@ -3,6 +3,11 @@ FROM debian:jessie
 MAINTAINER c33s
 
 ENV DOCKER_DEBIAN_CODENAME jessie
+
+ENV MINIO_VERSION 2020-11-25T23-04-07Z
+ENV MINIO_SHA256 985c43f9bec8fdc4ef2ee44c63c9657e10c4cfeb5cb949179d6d693f7428c314
+ENV DEBIAN_FRONTEND noninteractive
+
 ARG DEBIAN_FRONTEND=noninteractive
 
 COPY bin/provision-base.sh /root/provision-base.sh
