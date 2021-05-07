@@ -17,25 +17,7 @@ version_compare_gt() {
 }
 
 case "$(lsb_release -sc)" in
-########################################################################################################################
-wheezy) #7 #############################################################################################################
-    echo "wheezy is deprecated"
-    ;;
-########################################################################################################################
-jessie) #8 #############################################################################################################
-#    RELEASE_SPECIFIC_PACKAGES=mysql-client
-    # DotDeb Repo ###
-    cat << EOF > /etc/apt/sources.list.d/dotdeb.list
-        deb http://packages.dotdeb.org jessie all
-        deb-src http://packages.dotdeb.org jessie all
-EOF
-    wget --no-clobber --quiet https://www.dotdeb.org/dotdeb.gpg \
-        && apt-key add dotdeb.gpg \
-        && apt-get update \
-        && rm dotdeb.gpg
-    # END DotDeb Repo ###
-    ;;
-########################################################################################################################
+
 stretch) #9 ############################################################################################################
 #    RELEASE_SPECIFIC_PACKAGES=mysql-client
     # Sury Repo ###
@@ -86,19 +68,7 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.lis
 #* https://deb.nodesource.com/setup_12.x — Node.js 12 LTS "Erbium" (recommended)
 #* https://deb.nodesource.com/setup_14.x — Node.js 14 LTS "Fermium"
 case $DOCKER_PHP_VERSION in
-    7.0)
-        curl -sL https://deb.nodesource.com/setup_8.x | bash -
-        ;;
-    7.1)
-        curl -sL https://deb.nodesource.com/setup_8.x | bash -
-        ;;
-    7.2)
-        curl -sL https://deb.nodesource.com/setup_8.x | bash -
-        ;;
-    7.3)
-        curl -sL https://deb.nodesource.com/setup_12.x | bash -
-        ;;
-    7.4)
+    8.0)
         curl -sL https://deb.nodesource.com/setup_12.x | bash -
         ;;
     *)
@@ -109,8 +79,19 @@ case $DOCKER_PHP_VERSION in
 esac
 
 ########################################################################################################################
-wget https://mozjpeg.codelove.de/bin/mozjpeg_3.1_amd64.deb
-dpkg -i mozjpeg_3.1_amd64.deb
+#mozjpeg_filename="mozjpeg_3.1_amd64.deb"
+mozjpeg_filename="mozjpeg_4.0.0_amd64.deb"
+wget https://mozjpeg.codelove.de/bin/${mozjpeg_filename}
+#checksum_valid="D60F14D0C161A14E092EFED843E16DFDA96C6F998059EFE7F0A8AA2141637049" # mozjpeg_3.1_amd64.deb
+checksum_valid="FF3643FCCC1ABFEE905800672215521B1370FC7D15D90C21C7B205FEB95D24A6" # mozjpeg_4.0.0_amd64.deb
+checksum_current=$(sha256sum ${mozjpeg_filename} | cut -d " " -f1)
+checksum_current=${checksum_current^^}
+if [[ "$checksum_current" != "$checksum_valid" ]] ; then
+    echo "invalid checksum got '${checksum_current}' but  require '$checksum_valid'"
+    exit 1
+fi
+dpkg -i ${mozjpeg_filename}
+
 apt-get update && apt-get install --quiet --yes --no-install-recommends \
         yarn \
         nodejs \
@@ -120,48 +101,38 @@ apt-get update && apt-get install --quiet --yes --no-install-recommends \
         optipng \
         pngquant \
         dnsutils \
-        php$DOCKER_PHP_VERSION-cli \
         php$DOCKER_PHP_VERSION-apcu \
-        php$DOCKER_PHP_VERSION-apcu-bc \
         php$DOCKER_PHP_VERSION-bcmath \
         php$DOCKER_PHP_VERSION-bz2 \
+        php$DOCKER_PHP_VERSION-cli \
         php$DOCKER_PHP_VERSION-common \
         php$DOCKER_PHP_VERSION-curl \
         php$DOCKER_PHP_VERSION-enchant \
         php$DOCKER_PHP_VERSION-gd \
-        php$DOCKER_PHP_VERSION-geoip \
         php$DOCKER_PHP_VERSION-gmp \
         php$DOCKER_PHP_VERSION-imagick \
         php$DOCKER_PHP_VERSION-imap \
         php$DOCKER_PHP_VERSION-intl \
-        php$DOCKER_PHP_VERSION-json \
         php$DOCKER_PHP_VERSION-ldap \
-        php$DOCKER_PHP_VERSION-readline \
+        php$DOCKER_PHP_VERSION-maxminddb \
+        php$DOCKER_PHP_VERSION-mailparse \
         php$DOCKER_PHP_VERSION-mbstring \
         php$DOCKER_PHP_VERSION-memcached \
         php$DOCKER_PHP_VERSION-mongodb \
         php$DOCKER_PHP_VERSION-mysql \
         php$DOCKER_PHP_VERSION-opcache \
+        php$DOCKER_PHP_VERSION-pcov \
         php$DOCKER_PHP_VERSION-pgsql \
+        php$DOCKER_PHP_VERSION-readline \
         php$DOCKER_PHP_VERSION-redis \
+        php$DOCKER_PHP_VERSION-soap \
         php$DOCKER_PHP_VERSION-sqlite3 \
         php$DOCKER_PHP_VERSION-ssh2 \
-        php$DOCKER_PHP_VERSION-soap \
-        php$DOCKER_PHP_VERSION-mailparse \
         php$DOCKER_PHP_VERSION-xdebug \
         php$DOCKER_PHP_VERSION-xml \
         php$DOCKER_PHP_VERSION-xmlrpc \
         php$DOCKER_PHP_VERSION-xsl \
         php$DOCKER_PHP_VERSION-zip
-
-#        php$DOCKER_PHP_VERSION-mcrypt \ # is installed for php7.0 and php7.1, in php7.2 it is deprecated.
-
-if version_compare_gte "$DOCKER_PHP_VERSION" "7.1"; then
-apt-get update && apt-get install --quiet --yes --no-install-recommends \
-        php$DOCKER_PHP_VERSION-pcov \
-else
-    echo "skipped to install pcov, php version to low. sury only provides pcov requires a minimum php version of 7.1"
-fi
 
 apt-get clean -qq
 apt-get autoremove -qq && ( -rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* >/dev/null 2>&1 || true ) \
@@ -235,18 +206,18 @@ wget --no-verbose https://github.com/consolidation/Robo/releases/download/${DOCK
     && chmod a+x /usr/local/bin/robo \
     && robo --version
 
-wget --no-verbose https://github.com/box-project/box2/releases/download/${DOCKER_VERSION_BOX}/box-${DOCKER_VERSION_BOX}.phar --output-document=/usr/local/bin/box \
-    && chmod a+x /usr/local/bin/box \
-    && box --version
+#wget --no-verbose https://github.com/box-project/box2/releases/download/${DOCKER_VERSION_BOX}/box-${DOCKER_VERSION_BOX}.phar --output-document=/usr/local/bin/box \
+#    && chmod a+x /usr/local/bin/box \
+#    && box --version
 
-if version_compare_gte "$DOCKER_PHP_VERSION" "7.1"; then
-    echo "installing box3.phar"
-    wget --no-verbose https://github.com/humbug/box/releases/download/${DOCKER_VERSION_BOX3}/box.phar --output-document=/usr/local/bin/box3 \
-        && chmod a+x /usr/local/bin/box3 \
-        && box3 --version
-else
-    echo "skipped to install box3.phar, php version to low. box3 requires a minimum php version of 7.1"
-fi
+#if version_compare_gte "$DOCKER_PHP_VERSION" "7.1"; then
+#    echo "installing box3.phar"
+#    wget --no-verbose https://github.com/humbug/box/releases/download/${DOCKER_VERSION_BOX3}/box.phar --output-document=/usr/local/bin/box3 \
+#        && chmod a+x /usr/local/bin/box3 \
+#        && box3 --version
+#else
+#    echo "skipped to install box3.phar, php version to low. box3 requires a minimum php version of 7.1"
+#fi
 
 php -m
 php -v

@@ -1,0 +1,30 @@
+FROM c33s/debian:buster
+
+MAINTAINER c33s
+
+ENV DOCKER_PHP_VERSION 8.0
+
+ENV DOCKER_VERSION_COMPOSER 2.0.12
+ENV DOCKER_VERSION_ROBO 2.2.2
+#ENV DOCKER_VERSION_BOX 2.7.5
+#ENV DOCKER_VERSION_BOX3 3.8.4
+ENV COMPOSER_ALLOW_SUPERUSER true
+ENV COMPOSER_DISABLE_XDEBUG_WARN true
+ENV COMPOSER_HOME /var/lib/composer
+ENV COMPOSER_NO_INTERACTION true
+ENV SYMFONY_DEPRECATIONS_HELPER weak
+ENV TIMEZONE Europe/Vienna
+ENV DEBIAN_FRONTEND noninteractive
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+COPY bin/provision-${DOCKER_PHP_VERSION}-pre.sh /root/provision-${DOCKER_PHP_VERSION}-pre.sh
+RUN chmod +x /root/provision-${DOCKER_PHP_VERSION}-pre.sh; sync; /root/provision-${DOCKER_PHP_VERSION}-pre.sh
+
+COPY bin/provision-base_8.x.sh /root/provision-base.sh
+RUN chmod +x /root/provision-base.sh; sync; /root/provision-base.sh
+
+COPY bin/provision-${DOCKER_PHP_VERSION}-post.sh /root/provision-${DOCKER_PHP_VERSION}-post.sh
+RUN chmod +x /root/provision-${DOCKER_PHP_VERSION}-post.sh; sync; /root/provision-${DOCKER_PHP_VERSION}-post.sh; php -v
+
+CMD ["php", "-a"]
