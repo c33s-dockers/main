@@ -83,3 +83,13 @@ Autobuild config for c33s Debian & Php docker images.
 - [Windows Node Version Manager](https://github.com/coreybutler/nvm-windows)
 - [Linux/OSX Node Version Manager](https://github.com/nvm-sh/nvm)
 
+## Local Build Examples
+
+```bash
+cd php/base
+docker build --file Dockerfile-8.0 .
+```
+or
+```bash
+docker build --file php\base\Dockerfile-8.0 .\php\base
+```
