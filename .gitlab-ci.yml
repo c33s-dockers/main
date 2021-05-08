@@ -66,6 +66,10 @@ test_php7.4:
   extends: .test_php
   script:
     - cd php/base && docker build --file Dockerfile-7.4 .
+test_php8.0:
+  extends: .test_php
+  script:
+    - cd php/base && docker build --file Dockerfile-8.0 .
 
 test_build_stretch:
   extends: .test_build
