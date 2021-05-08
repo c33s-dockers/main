@@ -1,81 +1,48 @@
+image: docker:20.10.6 #20.10.6, 20.10, 20, latest
+
 stages:
-#  - build
   - test
-#  - deploy
+
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: ""
 
 services:
-  - docker:dind
+  - docker:20.10.6-dind #20.10.6-dind, 20.10-dind, 20-dind, dind
 
-.test_base:
+## Debian Tests
+test_matrix_debian:
   stage: test
-  image: docker:latest
-.test_debian:
-  extends: .test_base
-  only:
-    changes:
-      - debian/**/*
-.test_php:
-  extends: .test_base
-  only:
-    changes:
-      - php/**/*
-.test_build:
-  extends: .test_base
-  only:
-    changes:
-      - build/**/*
+  parallel:
+    matrix:
+      - DEBIAN_VERSION: [buster, stretch, jessie]
+#      - DEBIAN_VERSION: [ buster, stretch, jessie, wheezy]
+  script:
+    - ./tests/debian/debian_${DEBIAN_VERSION}_test.sh
+#  only:
+#    changes:
+#      - debian/**/*
 
-test_wheezy:
-  extends: .test_debian
+## Php Tests
+test_matrix_php:
+  stage: test
+  parallel:
+    matrix:
+      - PHP_VERSION:     ['8.0', '7.4', '7.3', '7.2', '7.1']
   script:
-    - cd debian && docker build --file Dockerfile-wheezy .
-test_jessie:
-  extends: .test_debian
-  script:
-    - cd debian && docker build --file Dockerfile-jessie .
-test_stretch:
-  extends: .test_debian
-  script:
-    - cd debian && docker build --file Dockerfile-stretch .
-test_buster:
-  extends: .test_debian
-  script:
-    - cd debian && docker build --file Dockerfile-buster .
+    - ./tests/php/php_${PHP_VERSION}_test.sh
+#  only:
+#    changes:
+#      - php/**/*
 
-test_php5.6:
-  extends: .test_php
+## Build Tests
+test_matrix_build:
+  stage: test
+  parallel:
+    matrix:
+      - DEBIAN_VERSION: [ buster, stretch]
   script:
-    - cd php/base && docker build --file Dockerfile-5.6 .
-test_php7.0:
-  extends: .test_php
-  script:
-    - cd php/base && docker build --file Dockerfile-7.0 .
-test_php7.1:
-  extends: .test_php
-  script:
-    - cd php/base && docker build --file Dockerfile-7.1 .
-test_php7.2:
-  extends: .test_php
-  script:
-    - cd php/base && docker build --file Dockerfile-7.2 .
-test_php7.3:
-  extends: .test_php
-  script:
-    - cd php/base && docker build --file Dockerfile-7.3 .
-test_php7.4:
-  extends: .test_php
-  script:
-    - cd php/base && docker build --file Dockerfile-7.4 .
-test_php8.0:
-  extends: .test_php
-  script:
-    - cd php/base && docker build --file Dockerfile-8.0 .
-
-test_build_stretch:
-  extends: .test_build
-  script:
-    - cd build && docker build --file Dockerfile-stretch .
-test_build_buster:
-  extends: .test_build
-  script:
-    - cd build && docker build --file Dockerfile-buster .
+    - ./tests/build/build_${DEBIAN_VERSION}_test.sh
+#  only:
+#    changes:
+#      - build/**/*
