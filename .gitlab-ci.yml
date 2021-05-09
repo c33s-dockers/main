@@ -19,9 +19,9 @@ test_matrix_debian:
 #      - DEBIAN_VERSION: [ buster, stretch, jessie, wheezy]
   script:
     - ./tests/debian/debian_${DEBIAN_VERSION}_test.sh
-#  only:
-#    changes:
-#      - debian/**/*
+  only:
+    changes:
+      - debian/**/*
 
 ## Php Tests
 test_matrix_php:
@@ -31,9 +31,9 @@ test_matrix_php:
       - PHP_VERSION:     ['8.0', '7.4', '7.3', '7.2', '7.1']
   script:
     - ./tests/php/php_${PHP_VERSION}_test.sh
-#  only:
-#    changes:
-#      - php/**/*
+  only:
+    changes:
+      - php/**/*
 
 ## Build Tests
 test_matrix_build:
@@ -43,6 +43,6 @@ test_matrix_build:
       - DEBIAN_VERSION: [ buster, stretch]
   script:
     - ./tests/build/build_${DEBIAN_VERSION}_test.sh
-#  only:
-#    changes:
-#      - build/**/*
+  only:
+    changes:
+      - build/**/*
