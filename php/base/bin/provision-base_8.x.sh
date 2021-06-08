@@ -128,12 +128,13 @@ apt-get update && apt-get install --quiet --yes --no-install-recommends \
         php$DOCKER_PHP_VERSION-soap \
         php$DOCKER_PHP_VERSION-sqlite3 \
         php$DOCKER_PHP_VERSION-ssh2 \
-        php$DOCKER_PHP_VERSION-xdebug \
         php$DOCKER_PHP_VERSION-xml \
         php$DOCKER_PHP_VERSION-xmlrpc \
         php$DOCKER_PHP_VERSION-xsl \
         php$DOCKER_PHP_VERSION-zip
 
+# removed xdebug in favor of pcov
+#         php$DOCKER_PHP_VERSION-xdebug \
 apt-get clean -qq
 apt-get autoremove -qq && ( -rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* >/dev/null 2>&1 || true ) \
     && echo 'date.timezone="Europe/Vienna"' >> /etc/php/${DOCKER_PHP_VERSION}/cli/conf.d/timezone.ini \

@@ -158,7 +158,8 @@ apt-get update && apt-get install --quiet --yes --no-install-recommends \
 
 if version_compare_gte "$DOCKER_PHP_VERSION" "7.1"; then
 apt-get update && apt-get install --quiet --yes --no-install-recommends \
-        php$DOCKER_PHP_VERSION-pcov \
+        php$DOCKER_PHP_VERSION-pcov && \
+        apt-get remove --quiet --yes php$DOCKER_PHP_VERSION-xdebug
 else
     echo "skipped to install pcov, php version to low. sury only provides pcov requires a minimum php version of 7.1"
 fi
