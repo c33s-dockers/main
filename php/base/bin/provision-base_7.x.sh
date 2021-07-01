@@ -156,7 +156,7 @@ apt-get update && apt-get install --quiet --yes --no-install-recommends \
 
 #        php$DOCKER_PHP_VERSION-mcrypt \ # is installed for php7.0 and php7.1, in php7.2 it is deprecated.
 
-if version_compare_gte "$DOCKER_PHP_VERSION" "7.1"; then
+if version_compare_gt "$DOCKER_PHP_VERSION" "7.1"; then
 apt-get update && apt-get install --quiet --yes --no-install-recommends \
         php$DOCKER_PHP_VERSION-pcov && \
         apt-get remove --quiet --yes php$DOCKER_PHP_VERSION-xdebug
