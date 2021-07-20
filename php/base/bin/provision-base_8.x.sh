@@ -95,6 +95,7 @@ dpkg -i ${mozjpeg_filename}
 apt-get update && apt-get install --quiet --yes --no-install-recommends \
         yarn \
         nodejs \
+        patch \
         mariadb-client \
         postgresql-client \
         jpegoptim \

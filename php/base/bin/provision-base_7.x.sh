@@ -113,6 +113,7 @@ wget https://mozjpeg.codelove.de/bin/mozjpeg_3.1_amd64.deb
 dpkg -i mozjpeg_3.1_amd64.deb
 apt-get update && apt-get install --quiet --yes --no-install-recommends \
         yarn \
+        patch \
         nodejs \
         mariadb-client \
         postgresql-client \
