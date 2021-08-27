@@ -5,4 +5,4 @@
 echo "running provision for"
 figlet $(lsb_release -sc)
 
-echo "nothing to do for buster right now"
+echo "nothing to do for bullseye right now"

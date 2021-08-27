@@ -15,34 +15,32 @@ test_matrix_debian:
   stage: test
   parallel:
     matrix:
-      - DEBIAN_VERSION: [bullseye]
-#      - DEBIAN_VERSION: [bullseye, buster, stretch, jessie]
-#      - DEBIAN_VERSION: [ buster, stretch, jessie, wheezy]
+      - DEBIAN_VERSION: [bullseye, buster, stretch, jessie]
+#      - DEBIAN_VERSION: [bullseye buster, stretch, jessie, wheezy]
   script:
     - ./tests/debian/debian_${DEBIAN_VERSION}_test.sh
   only:
     changes:
       - debian/**/*
 
-### Php Tests
-#test_matrix_php:
-#  stage: test
-#  parallel:
-#    matrix:
-#      - PHP_VERSION:     ['8.0', '7.4', '7.3', '7.2', '7.1']
-#  script:
-#    - ./tests/php/php_${PHP_VERSION}_test.sh
-#  only:
-#    changes:
-#      - php/**/*
+## Php Tests
+test_matrix_php:
+  stage: test
+  parallel:
+    matrix:
+      - PHP_VERSION:     ['8.0', '7.4', '7.3', '7.2', '7.1']
+  script:
+    - ./tests/php/php_${PHP_VERSION}_test.sh
+  only:
+    changes:
+      - php/**/*
 
 ## Build Tests
 test_matrix_build:
   stage: test
   parallel:
     matrix:
-      - DEBIAN_VERSION: [bullseye]
-#      - DEBIAN_VERSION: [bullseye, buster, stretch]
+      - DEBIAN_VERSION: [bullseye, buster, stretch]
   script:
     - ./tests/build/build_${DEBIAN_VERSION}_test.sh
   only:
