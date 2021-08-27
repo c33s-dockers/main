@@ -1,0 +1,17 @@
+FROM debian:bullseye-backports
+
+MAINTAINER c33s
+
+ENV DOCKER_DEBIAN_CODENAME bullseye
+
+ENV MINIO_VERSION 2021-07-27T06-46-19Z
+ENV MINIO_SHA256 0df81285771e12e16a0c4c2f5e0ebc700e66abb8179013cc740d48b0abad49be
+ENV DEBIAN_FRONTEND noninteractive
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+COPY bin/provision-base.sh /root/provision-base.sh
+RUN chmod +x /root/provision-base.sh; sync; /root/provision-base.sh
+
+COPY bin/provision-$DOCKER_DEBIAN_CODENAME.sh /root/provision-$DOCKER_DEBIAN_CODENAME.sh
+RUN chmod +x /root/provision-$DOCKER_DEBIAN_CODENAME.sh; sync; /root/provision-$DOCKER_DEBIAN_CODENAME.sh
