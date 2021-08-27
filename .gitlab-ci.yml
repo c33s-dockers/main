@@ -15,8 +15,7 @@ test_matrix_debian:
   stage: test
   parallel:
     matrix:
-      - DEBIAN_VERSION: [bullseye, buster, stretch, jessie]
-#      - DEBIAN_VERSION: [bullseye buster, stretch, jessie, wheezy]
+      - DEBIAN_VERSION: [bullseye, buster, stretch, jessie] # wheezy
   script:
     - ./tests/debian/debian_${DEBIAN_VERSION}_test.sh
   only:
