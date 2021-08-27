@@ -25,12 +25,13 @@ Plain [debian] image, mostly used as base image for the other images with only l
 debian build is only failing for wheezy 7 but [shield.io] does not support 
 [build status for tags](https://github.com/badges/shields/issues/935) as docker does not support it.
 
-| tag                | debian       | offical support  | size                                                                     |
-| ----------         | -------      | --------         | ---                                                                      |
-| 10, buster, latest | buster 10    | LTS 2024         | ![](https://img.shields.io/docker/image-size/c33s/debian/buster?label=)  |
-| 9, stretch         | stretch 9    | LTS June 2022    | ![](https://img.shields.io/docker/image-size/c33s/debian/stretch?label=) |
-| 8, jessie          | jessie 8     | LTS 30 June 2020 | ![](https://img.shields.io/docker/image-size/c33s/debian/jessie?label=)  |
-| 7, wheezy          | wheezy 7 (*) | LTS 31 May 2018  | ![](https://img.shields.io/docker/image-size/c33s/debian/wheezy?label=)  |
+| tag                  | debian       | offical support  | size                                                                      |
+| ----------           | -------      | --------         | ---                                                                       |
+| 11, bullseye, latest | bullseye 11  | LTS TBA          | ![](https://img.shields.io/docker/image-size/c33s/debian/bullseye?label=) |
+| 10, buster           | buster 10    | LTS 2024         | ![](https://img.shields.io/docker/image-size/c33s/debian/buster?label=)   |
+| 9, stretch           | stretch 9    | LTS June 2022    | ![](https://img.shields.io/docker/image-size/c33s/debian/stretch?label=)  |
+| 8, jessie            | jessie 8     | LTS 30 June 2020 | ![](https://img.shields.io/docker/image-size/c33s/debian/jessie?label=)   |
+| 7, wheezy            | wheezy 7 (*) | LTS 31 May 2018  | ![](https://img.shields.io/docker/image-size/c33s/debian/wheezy?label=)   |
 
 (*) build is broken, will likely be deprecated and removed.
 
@@ -76,10 +77,11 @@ contain overview:
 
 For building code and package them.
 
-| tag        | debian    | size                                                                               |
-| -------    | --------- | ---                                                                                |
-| 10, buster | buster 10 | ![](https://img.shields.io/docker/image-size/c33s/build/buster?label=buster%2010)  |
-| 9, stretch | stretch 9 | ![](https://img.shields.io/docker/image-size/c33s/build/stretch?label=stretch%209) |
+| tag          | debian      | size                                                                               |
+| -------      | ---------   | ---                                                                                |
+| 11, bullseye | bullseye 11 | ![](https://img.shields.io/docker/image-size/c33s/build/bullseye?label=bullseye%2011)  |
+| 10, buster   | buster 10   | ![](https://img.shields.io/docker/image-size/c33s/build/buster?label=buster%2010)  |
+| 9, stretch   | stretch 9   | ![](https://img.shields.io/docker/image-size/c33s/build/stretch?label=stretch%209) |
 
 contains:
 
